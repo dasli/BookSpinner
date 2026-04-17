@@ -19,6 +19,7 @@ defineEmits(['remove'])
         v-for="(book, index) in books"
         :key="index"
         :book="book"
+        :index="index"
         @remove="$emit('remove', index)"
       />
     </div>
@@ -28,14 +29,14 @@ defineEmits(['remove'])
 <style scoped>
 .book-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 1rem;
 }
 
 .empty-state {
   text-align: center;
   padding: 3rem 1rem;
-  color: var(--brown-light);
+  color: var(--text-secondary);
 }
 
 .empty-icon {
@@ -44,6 +45,6 @@ defineEmits(['remove'])
 }
 
 .empty-state p {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
 }
 </style>

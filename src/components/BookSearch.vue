@@ -30,6 +30,7 @@ function onBlur() {
   <div class="book-search">
     <div class="search-input-wrapper">
       <input
+        class="search-input"
         v-model="query"
         type="text"
         placeholder="Search for a book to add..."
@@ -76,15 +77,34 @@ function onBlur() {
   position: relative;
 }
 
+.search-input {
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 50px;
+  padding: 0.75rem 1.25rem;
+  color: var(--text-primary);
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--sage);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--sage) 20%, transparent);
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
 .search-spinner {
   position: absolute;
-  right: 12px;
+  right: 16px;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--cream-dark);
-  border-top-color: var(--burgundy);
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-top-color: var(--sage);
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
 }
@@ -95,18 +115,18 @@ function onBlur() {
 
 .search-results {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 4px);
   left: 0;
   right: 0;
-  background: white;
-  border: 2px solid var(--cream-dark);
-  border-top: none;
-  border-radius: 0 0 8px 8px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
   list-style: none;
   z-index: 100;
-  box-shadow: 0 8px 20px var(--shadow-strong);
+  box-shadow: 0 8px 24px oklch(28% 0.04 80 / 0.12);
   max-height: 320px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .search-result-item {
@@ -118,16 +138,28 @@ function onBlur() {
   transition: background 0.15s ease;
 }
 
+.search-result-item:first-child {
+  border-radius: 12px 12px 0 0;
+}
+
+.search-result-item:last-child {
+  border-radius: 0 0 12px 12px;
+}
+
+.search-result-item:only-child {
+  border-radius: 12px;
+}
+
 .search-result-item:hover {
-  background: var(--cream);
+  background: var(--bg);
 }
 
 .result-cover {
-  width: 40px;
-  height: 56px;
+  width: 36px;
+  height: 52px;
   object-fit: cover;
-  border-radius: 3px;
-  box-shadow: 0 1px 4px var(--shadow);
+  border-radius: 4px;
+  box-shadow: 0 1px 4px oklch(28% 0.04 80 / 0.15);
   flex-shrink: 0;
 }
 
@@ -135,10 +167,14 @@ function onBlur() {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--cream-dark);
-  color: var(--brown-light);
-  font-size: 1.2rem;
+  background: var(--border);
+  color: var(--text-secondary);
+  font-size: 1rem;
   font-weight: 700;
+  border-radius: 4px;
+  flex-shrink: 0;
+  width: 36px;
+  height: 52px;
 }
 
 .result-info {
@@ -147,30 +183,31 @@ function onBlur() {
 
 .result-title {
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--text-primary);
 }
 
 .result-author {
-  font-size: 0.8rem;
-  color: var(--brown-light);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 1px;
 }
 
 .search-empty {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 4px);
   left: 0;
   right: 0;
-  background: white;
-  border: 2px solid var(--cream-dark);
-  border-top: none;
-  border-radius: 0 0 8px 8px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
   padding: 14px;
   text-align: center;
-  color: var(--brown-light);
-  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
   z-index: 100;
 }
 </style>

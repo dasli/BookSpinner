@@ -1,4 +1,9 @@
 node_modules
 dist
 *.local
+.*.md
 .claude
+.agents
+skills-lock.json
+.DS_Store
+.superpowers/
