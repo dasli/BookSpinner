@@ -1,7 +1,7 @@
 node_modules
 dist
 *.local
-.*.md
+*.md
 .claude
 .agents
 skills-lock.json
